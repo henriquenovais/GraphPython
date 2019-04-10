@@ -127,42 +127,4 @@ elif tipo_gr == 'ndi':
 else:
     print("Input não reconhecido.")
     print("Encerrando o programa.")
-'''
-print("Feche a janela do grafo imprimido para prosseguir com o programa.") #Aviso ao usuário para quando esse desejar prosseguir com o programa
-nx.draw(g, with_labels = True)
-plt.show()
-'''
 
-'''
-O trecho de código a seguir será para a criação do menu através do qual o usuário
-será capaz de realizar alterações no grafo ou realizar testes no grafo o qual gerou.
-'''
-'''
-print("Você deseja realizar testes e/ou alterações no grafo gerado?")
-print("Digite 'tst' para abrir o menu de testes ou digite 'alt' para ser direcionado  ao menu de alterações.")
-print("Digite 'end' para finalizar o programa.")
-menu = input("Insira sua opção: ")
-
-#Programação do menu:
-if menu == "tst":
-    #Acesso ao menu de testes
-    print("Menu de testes")
-elif menu == "alt":
-    #Acesso ao menu de alterações
-    print("Menu de alterações")
-elif menu == "end":
-    #Finalização do programa
-    print("Programa encerrado.")
-else:
-    #Caso padrão(default), encerra o programa
-    print("Caracteres não reconhecidos.")
-    print("Programa encerrado.")
-'''
-'''
-g = nx.DiGraph()
-g.add_weighted_edges_from([(1,2,0.5), (3,1,0.75)])
-
-
-nx.draw(g, with_labels = True)
-plt.show()
-'''
