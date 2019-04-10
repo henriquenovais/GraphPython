@@ -27,38 +27,41 @@ if tipo_gr == 'dir':
         first = input("Insira o vértice origem: ") #Solicita o no origem
         second = input("Insira o vértice destino: ")#Solicita o no destino
         #Exemplo: 3 vertices (A,B,C) com 2 ligacoes (B,A) e (B,C)
-        g.add_weighted_edges_from(str(first), str(second),1)  # adicionando aresta
+        g.add_weighted_edges_from([(str(first), str(second),1)])  # adicionando aresta
     
-    
-    print("Como deseja proceder?")
-    print("Digite 'plt' para visualizar(imprimir) o grafo criado.")
-    print("Digite 'tst' para abrir o menu de testes.")
-    print("Digite 'alt' para ser direcionado  ao menu de alterações.")
-    print("Digite 'end' para finalizar o programa.")
-    menu = input("Qual a sua opção? Digite a seguir: ")
-    menu = menu.lower()
-    #Programação do menu:
-    if menu == "plt":
-        #Visualização do grafo
-        print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
-        #Aviso ao usuário para quando esse desejar prosseguir com o programa
-        input("Pressione qualquer tecla para continuar com o processo de visualização.") 
-        nx.draw(g, with_labels = True)
-        print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
-        plt.show()
-    elif menu == "tst":
-        #Acesso ao menu de testes
-        print("Menu de testes")
-    elif menu == "alt":
-        #Acesso ao menu de alterações
-        print("Menu de alterações")
-    elif menu == "end":
-        #Finalização do programa
-        print("Programa encerrado.")
-    else:
-        #Caso padrão(default), encerra o programa
-        print("Caracteres não reconhecidos.")
-        print("Programa encerrado.")
+    done = False
+    while done == False:
+        print("Como deseja proceder?")
+        print("Digite 'plt' para visualizar(imprimir) o grafo criado.")
+        print("Digite 'tst' para abrir o menu de testes.")
+        print("Digite 'alt' para ser direcionado  ao menu de alterações.")
+        print("Digite 'end' para finalizar o programa.")
+        menu = input("Qual a sua opção? Digite a seguir: ")
+        menu = menu.lower()
+        #Programação do menu:
+        if menu == "plt":
+            #Visualização do grafo
+            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            #Aviso ao usuário para quando esse desejar prosseguir com o programa
+            input("Pressione qualquer tecla para continuar com o processo de visualização.") 
+            nx.draw(g, with_labels = True)
+            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            plt.show()
+        elif menu == "tst":
+            #Acesso ao menu de testes
+            print("Menu de testes")
+        elif menu == "alt":
+            #Acesso ao menu de alterações
+            print("Menu de alterações")
+        elif menu == "end":
+            #Finalização do programa
+            print("Programa encerrado.")
+            done = True
+        else:
+            #Caso padrão(default), encerra o programa
+            print("Caracteres não reconhecidos.")
+            print("Programa encerrado.")
+            done = True
     #----------------------------------------
     #                 FIM
     #           GRAFO DIRECIONAL
@@ -83,38 +86,41 @@ elif tipo_gr == 'ndi':
         first = input("Insira o vértice origem: ") #Solicita o no origem
         second = input("Insira o vértice destino: ")#Solicita o no destino
         #Exemplo: 3 vertices (A,B,C) com 2 ligacoes (B,A) e (B,C)
-        g.weighted_add_edge(str(first), str(second))  # adicionando aresta
+        g.add_edge(str(first), str(second))  # adicionando aresta
     
-    
-    print("Como deseja proceder?")
-    print("Digite 'plt' para visualizar(imprimir) o grafo criado.")
-    print("Digite 'tst' para abrir o menu de testes.")
-    print("Digite 'alt' para ser direcionado  ao menu de alterações.")
-    print("Digite 'end' para finalizar o programa.")
-    menu = input("Qual a sua opção? Digite a seguir: ")
-    menu = menu.lower()
-    #Programação do menu:
-    if menu == "plt":
-        #Visualização do grafo
-        print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
-        #Aviso ao usuário para quando esse desejar prosseguir com o programa
-        input("Pressione qualquer tecla para continuar com o processo de visualização.") 
-        nx.draw(g, with_labels = True)
-        print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
-        plt.show()
-    elif menu == "tst":
-        #Acesso ao menu de testes
-        print("Menu de testes")
-    elif menu == "alt":
-        #Acesso ao menu de alterações
-        print("Menu de alterações")
-    elif menu == "end":
-        #Finalização do programa
-        print("Programa encerrado.")
-    else:
-        #Caso padrão(default), encerra o programa
-        print("Caracteres não reconhecidos.")
-        print("Programa encerrado.")
+    done = False
+    while done == False:
+        print("Como deseja proceder?")
+        print("Digite 'plt' para visualizar(imprimir) o grafo criado.")
+        print("Digite 'tst' para abrir o menu de testes.")
+        print("Digite 'alt' para ser direcionado  ao menu de alterações.")
+        print("Digite 'end' para finalizar o programa.")
+        menu = input("Qual a sua opção? Digite a seguir: ")
+        menu = menu.lower()
+        #Programação do menu:
+        if menu == "plt":
+            #Visualização do grafo
+            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            #Aviso ao usuário para quando esse desejar prosseguir com o programa
+            input("Pressione qualquer tecla para continuar com o processo de visualização.") 
+            nx.draw(g, with_labels = True)
+            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            plt.show()
+        elif menu == "tst":
+            #Acesso ao menu de testes
+            print("Menu de testes")
+        elif menu == "alt":
+            #Acesso ao menu de alterações
+            print("Menu de alterações")
+        elif menu == "end":
+            #Finalização do programa
+            print("Programa encerrado.")
+            done = True
+        else:
+            #Caso padrão(default), encerra o programa
+            print("Caracteres não reconhecidos.")
+            print("Programa encerrado.")
+            done = True
 
     #----------------------------------------
     #                 FIM
