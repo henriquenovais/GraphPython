@@ -7,7 +7,7 @@ Projeto Atividade
 
 1. Implementar um TAD (Tipo Abstrato de Dados), onde contemple funcionalidades específicas de um grafo.
 
-- Inclusão de um grafo com seus vértices e arestas [FEITO]
+- <b>Inclusão de um grafo com seus vértices e arestas [FEITO]</b>
 
 - Teste a existência de uma aresta entre 2 vértices
 
