@@ -23,7 +23,7 @@ Projeto Atividade
 
 - Identifique se o grafo é conexo
 
-Obs.: A solução adotada deve contemplar a parametrização para grafos ponderados e grafos dirigidos.
+<b>Obs.: A solução adotada deve contemplar a parametrização para grafos ponderados e grafos dirigidos. [FEITO]</b>
 
  
 
