@@ -17,7 +17,7 @@ if tipo_gr == 'pnd':
 
     # -------------- DECLARAÇÃO DO GRAFO PONDERADO -----------
 
-    print("Você escolheu criar um  grafo direcional.")
+    print("Você escolheu criar um  grafo ponderado.")
     g = nx.Graph()  # Criando um grafo  vazio
 
     num_vertices = input("Número de vertices do seu grafo: ")  # Solicita o numero de vertices
