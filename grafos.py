@@ -91,7 +91,7 @@ if tipo_gr == 'pnd':
             elif test_menu == "grx":
                 print(max(g.degree()))
                 print(min(g.degree()))
-                print((nx.number_of_nodes(g) * 2) / nx.number_of_edges(g))
+                print((nx.number_of_edges(g) * 2) / nx.number_of_nodes(g))
             elif test_menu == "gcx":
                 if nx.is_connected(g) == True:
                     print("O grafo e conexo!")
