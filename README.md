@@ -7,7 +7,7 @@ Projeto Atividade
 
 1. Implementar um TAD (Tipo Abstrato de Dados), onde contemple funcionalidades específicas de um grafo.
 
-- <b>Inclusão de um grafo com seus vértices e arestas [FEITO]</b>
+- Inclusão de um grafo com seus vértices e arestas
 
 - Teste a existência de uma aresta entre 2 vértices
 
@@ -23,7 +23,7 @@ Projeto Atividade
 
 - Identifique se o grafo é conexo
 
-<b>Obs.: A solução adotada deve contemplar a parametrização para grafos ponderados e grafos dirigidos. [FEITO]</b>
+Obs.: A solução adotada deve contemplar a parametrização para grafos ponderados e grafos dirigidos.
 
  
 
@@ -31,4 +31,4 @@ Projeto Atividade
 
 3. Adicionar uma funcionalidade na solução adotada para identificar a existência de um caminho de Euler.
 
-4. Criar um padrão para entrada de dados a partir da leitura de um arquivo para geração do grafo.
+<b>4. Criar um padrão para entrada de dados a partir da leitura de um arquivo para geração do grafo.[PENDENTE]</b>
