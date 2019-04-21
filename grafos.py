@@ -50,7 +50,7 @@ if tipo_gr == 'pnd':
         # Programação do menu:
         if menu == "plt":
             # Visualização do grafo
-            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            print("AVISO: Feche a janela do grafo impresso para prosseguir com o programa.")
             # Aviso ao usuário para quando esse desejar prosseguir com o programa
             input("Pressione qualquer tecla para continuar com o processo de visualização.")
             labels = nx.get_edge_attributes(g, 'weight')
@@ -191,7 +191,7 @@ if tipo_gr == 'dir':
         # Programação do menu:
         if menu == "plt":
             # Visualização do grafo
-            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            print("AVISO: Feche a janela do grafo impresso para prosseguir com o programa.")
             # Aviso ao usuário para quando esse desejar prosseguir com o programa
             input("Pressione qualquer tecla para continuar com o processo de visualização.")
             nx.draw(g, with_labels=True)
@@ -330,7 +330,7 @@ elif tipo_gr == 'ndi':
         # Programação do menu:
         if menu == "plt":
             # Visualização do grafo
-            print("AVISO: Feche a janela do grafo imprimido para prosseguir com o programa.")
+            print("AVISO: Feche a janela do grafo impresso para prosseguir com o programa.")
             # Aviso ao usuário para quando esse desejar prosseguir com o programa
             input("Pressione qualquer tecla para continuar com o processo de visualização.")
             nx.draw(g, with_labels=True)
@@ -369,7 +369,7 @@ elif tipo_gr == 'ndi':
             elif test_menu == "grx":
                 print(max(g.degree()))
                 print(min(g.degree()))
-                print((nx.number_of_nodes(g) * 2) / nx.number_of_edges(g))
+                print(((nx.number_of_edges(g) * 2)) / nx.number_of_nodes(g))
             elif test_menu == "gcx":
                 if nx.is_connected(g) == True:
                     print("O grafo e conexo!")
