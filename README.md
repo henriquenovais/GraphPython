@@ -3,7 +3,7 @@ Project for a university subject about Graphs.
 
 Projeto Atividade
 
- 
+ <b> Requisitos implementados: 
 
 1. Implementar um TAD (Tipo Abstrato de Dados), onde contemple funcionalidades específicas de um grafo.
 
@@ -31,4 +31,4 @@ Obs.: A solução adotada deve contemplar a parametrização para grafos pondera
 
 3. Adicionar uma funcionalidade na solução adotada para identificar a existência de um caminho de Euler.
 
-<b>4. Criar um padrão para entrada de dados a partir da leitura de um arquivo para geração do grafo.[PENDENTE]</b>
+4. Criar um padrão para entrada de dados a partir da leitura de um arquivo para geração do grafo.</b>
