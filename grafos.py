@@ -1,5 +1,27 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+from networkx.readwrite import json_graph
+import json
+
+#---------------------------------
+#   MÉTODOS DO PROGRAMA
+#---------------------------------
+
+#Método para escrever o grafo para um arquivo JSON:
+def writeToJSONFile(path, fileName, data):
+    filePathNameWExt = './' + path + '/' + fileName + '.json'
+    with open(filePathNameWExt, 'w') as fp:
+        json.dump(data, fp)
+
+#Método para importar um grafo de um arquivo JSON:
+def getJSON(filePathAndName):
+    with open(filePathAndName, 'r') as fp:
+        return json.load(fp)
+
+#---------------------------------
+#           FIM
+#   MÉTODOS DO PROGRAMA
+#---------------------------------
 
 # Menu inicial
 
@@ -7,10 +29,28 @@ print("Para iniciar o programa, é necessário digitar o tipo de grafo que desej
 print("Digite 'dir' para iniciar a criação de um grafo dirigido.")
 print("Digite 'ndi' para iniciar a criação de um grafo não-dirigido.")
 print("Digite 'pnd' para iniciar a criação de um grafo ponderado.")
+print("Digite 'imp' para importar um grafo de um arquivo JSON.")
 tipo_gr = input("Qual tipo de grafo deseja criar? Digite a seguir: ")
 tipo_gr = tipo_gr.lower()
 
-if tipo_gr == 'pnd':
+if tipo_gr == 'imp':
+    # ----------------------------------------
+    #           GRAFO IMPORTADO DE ARQUIVO
+    # ----------------------------------------
+    print("Para a leitura do arquivo JSON, esse deve estar na mesma parta do script.")
+    input("Pressione qualquer tecla para continuar.")
+    fileName = input("Insira a seguir o nome do arquivo a ser lido: ")
+
+    fileName = './' + fileName + '.json'
+    jsonFile = getJSON(fileName)
+    G = json_graph.adjacency_graph(jsonFile)
+    nx.draw(G, with_labels=True)
+    plt.show()
+    # ----------------------------------------
+    #           GRAFO IMPORTADO DE ARQUIVO
+    # ----------------------------------------
+
+elif tipo_gr == 'pnd':
     # ----------------------------------------
     #           GRAFO PONDERADO
     # ----------------------------------------
