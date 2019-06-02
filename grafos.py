@@ -1,33 +1,180 @@
+<<<<<<< HEAD
 # -*- coding: utf8 -*-
+=======
+# -*- coding: utf-8 -*-
+>>>>>>> 959f4678652f8c77a608f0cc339c4f5cb991d148
 
 import networkx as nx
 import matplotlib.pyplot as plt
 from networkx.readwrite import json_graph
 import json
+from collections import deque
+from heapq import heappush, heappop
+from itertools import count
+#---------------------------------
+#   METODOS DO PROGRAMA
+#---------------------------------
+
+def dijkstra(G, inicial, final=None, weight='weight'):
+    
+    inicial = {inicial}
+    if final in inicial:
+        return (0, [final])
+    weight = pesos(G, weight)
+    caminhos = {inicio: [inicio] for inicio in inicial}  #Dicionario de caminhos possiveis
+    
+    G_succ = G._succ if G.is_directed() else G._adj
+    pred = None
+    push = heappush
+    pop = heappop
+    dist = {}  # Dicionario de distancias finais
+    visao = {}
+    #margem eh uma estrutura heapq com tres tuplas (distance,c,nodo)
+    c = count()
+    margem = []
+    for inicio in inicial:
+        if inicio not in G:
+            raise nx.NodeNotFound("Inicio {} nao esta no G".format(source))
+        visao[inicio] = 0
+        push(margem, (0, next(c), inicio))
+    while margem:
+        (d, _, v) = pop(margem)
+        if v in dist:
+            continue  # already searched this node.
+        dist[v] = d
+        if v == final:
+            break
+        for u, e in G_succ[v].items():
+            cost = weight(v, u, e)
+            if cost is None:
+                continue
+            vu_dist = dist[v] + cost
+            if u not in visao or vu_dist < visao[u]:
+                visao[u] = vu_dist
+                push(margem, (vu_dist, next(c), u))
+                if caminhos is not None:
+                    caminhos[u] = caminhos[v] + [u]
+                if pred is not None:
+                    pred[u] = [v]
+            elif vu_dist == visao[u]:
+                if pred is not None:
+                    pred[u].append(v)
+
+    if final is None:
+        return (dist, caminhos)
+    try:
+        return (dist[final], caminhos[final])
+    except KeyError:
+        raise nx.NetworkXNoPath("Nao ha caminho para {}.".format(final))
+
+def pesos(G, weight):
+ #Metodo para retornar os pesos de um determinado grafo
+    if G.is_multigraph():
+        return lambda u, v, d: min(attr.get(weight, 1) for attr in d.values())
+    return lambda u, v, data: data.get(weight, 1)
+
+
+def bellman_ford(G, inicial, final=None, weight='weight'):
+    if inicial == final:
+        return (0, [inicial])
+
+    weight = pesos(G, weight)
+
+    caminhos = {inicial: [inicial]}  # dicionario de caminhos
+
+    dist = None #Definicao da variavel de distancia para realizar o calculo da distancia entre os grafos
+    pred = None  #Nao vao ser utilizados dicionarios de listas
+    for s in [inicial]:
+        if s not in G:
+            raise nx.NodeNotFound("Objeto inicial {} nao esta em G".format(s))
+
+    if pred is None:
+        pred = {v: [] for v in [inicial]}
+
+    if dist is None:
+        dist = {v: 0 for v in [inicial]}
+
+    G_succ = G.succ if G.is_directed() else G.adj #Ajuste de classificacao de acordo com o tipo do grafo
+    inf = float('inf') #definindo infinito [utilizado para grafos inalcansaveis]
+    n = len(G)
+
+    count = {}
+    q = deque([inicial])
+    na_fila = set([inicial])
+    while q:
+        u = q.popleft()
+        na_fila.remove(u)
+
+        if all(pred_u not in na_fila for pred_u in pred[u]):
+            dist_u = dist[u]
+            for v, e in G_succ[u].items():
+                dist_v = dist_u + weight(v, u, e)
+
+                if dist_v < dist.get(v, inf):
+                    if v not in na_fila:
+                        q.append(v)
+                        na_fila.add(v)
+                        count_v = count.get(v, 0) + 1
+                        if count_v == n:
+                            raise nx.NetworkXUnbounded(
+                                "Ciclo de custo negativo detectado")
+                        count[v] = count_v
+                    dist[v] = dist_v
+                    pred[v] = [u]
+
+                elif dist.get(v) is not None and dist_v == dist.get(v):
+                    pred[v].append(u)
+
+    if caminhos is not None:
+        dsts = [final] if final is not None else pred
+        for dst in dsts:
+
+            caminho = [dst]
+            cur = dst
+
+            while pred[cur]:
+                cur = pred[cur][0]
+                caminho.append(cur)
+
+            caminho.reverse()
+            caminhos[dst] = caminho
+
+    if final is None:
+        return (dist, caminhos)
+    try:
+        return (dist[final], caminhos[final])
+    except KeyError:
+        msg = "Node %s not reachable from %s" % (final, inicial)
+        raise nx.NetworkXNoPath(msg)
 
 #---------------------------------
-#   MÉTODOS DO PROGRAMA
+#   METODOS PARA IMPORTAR 
+#      E ESCREVER GRAFOS
 #---------------------------------
 
-#Método para escrever o grafo para um arquivo JSON:
+#Metodo para escrever o grafo para um arquivo JSON:
 def writeToJSONFile(path, fileName, data):
     filePathNameWExt = './' + path + '/' + fileName + '.json'
     with open(filePathNameWExt, 'w') as fp:
         json.dump(data, fp)
 
-#Método para importar um grafo de um arquivo JSON:
+#Metodo para importar um grafo de um arquivo JSON:
 def getJSON(filePathAndName):
     with open(filePathAndName, 'r') as fp:
         return json.load(fp)
 
 #---------------------------------
-#           FIM
-#   MÉTODOS DO PROGRAMA
+#   METODOS PARA CAMINHOS
 #---------------------------------
 
-# Menu inicial
+#---------------------------------
+#           FIM
+#   METODOS DO PROGRAMA
+#---------------------------------
 
-print("Para iniciar o programa, é necessário digitar o tipo de grafo que deseja criar, testar e manipular.")
+# Menu inicial a
+
+print("Para iniciar o programa, eh necessário digitar o tipo de grafo que deseja criar, testar e manipular.")
 print("Digite 'dir' para iniciar a criação de um grafo dirigido.")
 print("Digite 'ndi' para iniciar a criação de um grafo não-dirigido.")
 print("Digite 'pnd' para iniciar a criação de um grafo ponderado.")
@@ -110,6 +257,8 @@ elif tipo_gr == 'pnd':
             print("Digite 'gcx' para descobrir se o grafo e conexo.")
             print("Digite 'madj' para exibir a matriz adjacencia.")
             print("Digite 'euler' para verificar se há caminho de Euler.")
+            print("Digite 'djk' para calcular o menor caminho juntamente com o tamanho desse(Algoritmo de Dijkstra).")
+            print("Digite 'blm' para calcular o menor caminho juntamente com o tamanho desse(Algoritmo de Bellman-Ford)")
             test_menu = input("Qual a sua opção? Digite a seguir: ")
             if test_menu == "tar":
                 print("Vertices disponiveis: ", g.node())
@@ -142,6 +291,18 @@ elif tipo_gr == 'pnd':
             elif test_menu == "madj":
                 print("Matriz adjacencia:")
                 print(nx.to_numpy_matrix(g))
+            elif test_menu == "djk":
+                print("Digite o vertice inicial:")
+                vertice_i = input("Nome do vertice: ")
+                print("Digite o vertice final:")
+                vertice_f = input("Nome do vertice: ")
+                res = dijkstra(g, str(vertice_i), final=str(vertice_f), weight='weight')
+            elif test_menu == "blm":
+                print("Digite o vertice inicial.")
+                vertice_i = input("Nome do vertice: ")
+                print("Digite o vertice final.")
+                vertice_f = input("Nome do vertice: ")
+                res = bellman_ford(g, str(vertice_i), final=str(vertice_f), weight='weight')
             elif test_menu == "euler":
                 if nx.is_eulerian(g) == True:
                     print("Existe caminho de Euler!")
@@ -154,7 +315,7 @@ elif tipo_gr == 'pnd':
             print("Digite 'rve' para remover um vertice.")
             print("Digite 'nar' para inserir uma aresta entre dois vertices.")
             print("Digite 'rar' para remover uma aresta entre dois vertices.")
-            alt_menu = input("Qual a sua opção? Digite a seeguir: ")
+            alt_menu = input("Qual a sua opção? Digite a seguir: ")
             if alt_menu == "nve":
                 print("Vertices disponiveis: ", g.node())
                 novo_vertice = input("Insira o nome do novo vertice: ")
