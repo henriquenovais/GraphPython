@@ -140,10 +140,10 @@ G = nx.Graph()
 elist = [(1, 2, 5.0), (2, 3, 3.0), (3, 5, 1.0), (4, 5, 7.3),(2, 5 , 6.2)]
 G.add_weighted_edges_from(elist)
 
-Res = dijkstra(G, 1, final=5, weight='weight')
+Res = dijkstra(G, 1, 5, weight='weight')
 print(Res)
 
-Res2 = bellman_ford(G, 1, final=5, weight='weight')
+Res2 = bellman_ford(G, 1, 5, weight='weight')
 print(Res2)
 
 print( nx.floyd_warshall_numpy(G))
