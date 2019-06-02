@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # -*- coding: utf8 -*-
-=======
-# -*- coding: utf-8 -*-
->>>>>>> 959f4678652f8c77a608f0cc339c4f5cb991d148
 
 import networkx as nx
 import matplotlib.pyplot as plt
