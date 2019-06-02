@@ -135,17 +135,19 @@ def bellman_ford(G, inicial, final=None, weight='weight'):
         msg = "Node %s not reachable from %s" % (final, inicial)
         raise nx.NetworkXNoPath(msg)
 
-#Grafo para realizar o teste
-G = nx.Graph()
-elist = [(1, 2, 5.0), (2, 3, 3.0), (3, 5, 1.0), (4, 5, 7.3),(2, 5 , 6.2)]
-G.add_weighted_edges_from(elist)
+
+if __name__ == '__main__':
+    #Grafo para realizar o teste
+    G = nx.Graph()
+    elist = [(1, 2, 5.0), (2, 3, 3.0), (3, 5, 1.0), (4, 5, 7.3),(2, 5 , 6.2)]
+    G.add_weighted_edges_from(elist)
 
 
-#Formato para chamar as funções
-Res = dijkstra(G, 1, 5, weight='weight')
-print(Res)
+    #Formato para chamar as funções
+    Res = dijkstra(G, 1, 5, 'weight')
+    print(Res)
 
-Res2 = bellman_ford(G, 1, 5, weight='weight')
-print(Res2)
+    Res2 = bellman_ford(G, 1, 5, 'weight')
+    print(Res2)
 
-print( nx.floyd_warshall_numpy(G))
+    print( nx.floyd_warshall_numpy(G))
