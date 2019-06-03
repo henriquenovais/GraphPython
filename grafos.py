@@ -73,7 +73,7 @@ elif tipo_gr == 'pnd':
     # -------------- DECLARAÇÃO DO GRAFO PONDERADO -----------
 
     print("Você escolheu criar um  grafo ponderado.")
-    g = nx.Graph()  # Criando um grafo  vazio
+    g = nx.DiGraph()  # Criando um grafo  vazio
 
     num_vertices = input("Número de vertices do seu grafo: ")  # Solicita o numero de vertices
     for x in range(int(num_vertices)):  # Cria um laco com com a quantidade de vertices

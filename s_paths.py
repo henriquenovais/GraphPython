@@ -2,6 +2,12 @@ import networkx as nx
 from collections import deque
 from heapq import heappush, heappop
 from itertools import count
+import numpy as np
+
+#--------------------------
+# MÉTODOS PARA ENCONTRAR
+#
+#--------------------------
 
 def dijkstra(G, inicial, final=None, weight='weight'):
     
@@ -56,7 +62,9 @@ def dijkstra(G, inicial, final=None, weight='weight'):
         raise nx.NetworkXNoPath("Nao ha caminho para {}.".format(final))
 
 def pesos(G, weight):
- #Metodo para retornar os pesos de um determinado grafo
+    if callable(weight):
+        return weight
+ #Metodo para retornar uma função que retorna os pesos de um determinado grafo
     if G.is_multigraph():
         return lambda u, v, d: min(attr.get(weight, 1) for attr in d.values())
     return lambda u, v, data: data.get(weight, 1)
@@ -135,12 +143,33 @@ def bellman_ford(G, inicial, final=None, weight='weight'):
         msg = "Node %s not reachable from %s" % (final, inicial)
         raise nx.NetworkXNoPath(msg)
 
+def floyd_warshall(G):
+    n = G.number_of_nodes()
+    W = np.zeros((n, n))
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                W[i, j] = 0
+            elif G.has_edge(i, j):
+                W[i, j] = G.get_edge_data(i, j)['weight']
+            else:
+                W[i, j] = np.inf
+    n = W.shape[0]
+    D0 = W
+    for k in range(0, n):
+        Dk = np.zeros((n, n))
+        for i in range(0, n):
+            for j in range(0, n):
+                Dk[i, j] = min(D0[i, j], D0[i, k] + D0[k, j])
+        D0 = Dk
+
+    return Dk
 
 if __name__ == '__main__':
     #Grafo para realizar o teste
-    G = nx.Graph()
-    elist = [(1, 2, 5.0), (2, 3, 3.0), (3, 5, 1.0), (4, 5, 7.3),(2, 5 , 6.2)]
-    G.add_weighted_edges_from(elist)
+    G = nx.DiGraph()
+    elist = [(1, 2, {'weight':5}), (2, 3, {'weight':3}), (3, 5, {'weight':1}), (4, 5,{'weight':7.3}),(2, 5 ,{'weight':6.2})]
+    G.add_edges_from(elist)
 
 
     #Formato para chamar as funções
@@ -150,4 +179,5 @@ if __name__ == '__main__':
     Res2 = bellman_ford(G, 1, 5, 'weight')
     print(Res2)
 
-    print( nx.floyd_warshall_numpy(G))
+    print( floyd_warshall(G))
+

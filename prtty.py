@@ -231,9 +231,10 @@ def floyd_warshall_predecessor_and_distance(G, weight='weight'):
                     pred[u][v] = pred[w][v]
     return dict(pred), dict(dist)
 
-G = nx.Graph()
-elist = [(1, 2, 5.0), (2, 3, 3.0), (3, 5, 1.0), (4, 5, 7.3),(2, 5 , 6.2)]
-G.add_weighted_edges_from(elist)
+G = nx.DiGraph()
+'''
+elist = [(1, 2, {'weight':5}), (2, 3, {'weight':3}), (3, 5, {'weight':1}), (4, 5,{'weight':7.3}),(2, 5 ,{'weight':6.2})]
+G.add_edges_from(elist)
 
 #Res = dijkstra_path(G, 1, 5)
 
@@ -250,6 +251,8 @@ Res2 = bellman_ford(G, 1, final=5, weight='weight')
 print(Res2)
 
 print( nx.floyd_warshall_numpy(G))
-        
-
-
+'''       
+elist = [(1, 2, {'weight':5}), (2, 3, {'weight':3}), (3, 4, {'weight':1}), (4, 5,{'weight':7.3})]
+G.add_edges_from(elist)
+nx.draw(G)
+plt.show()
