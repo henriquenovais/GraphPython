@@ -31,6 +31,21 @@ Obs.: A solução adotada deve contemplar a parametrização para grafos pondera
 
 4. Criar um padrão para entrada de dados a partir da leitura de um arquivo para geração do grafo.
 
+5.
+- Implementar o Algoritmo de Warshall
+
+- Implementar o Algoritmo de Dijkstra
+
+- Pesquisar e implementar o Algoritmo de Bellman-Ford
+
+- Pesquisar e implementar o Algoritmo de Floyd
+
+- Preparar uma apresentação comparando os resultados do algoritmo de Dijkstra; Bellman-Ford e Floyd.
+
+- Desenvolver uma rotina para identificar quantos componentes conectados existem no grafo
+
+- Desenvolver uma rotina para identificar quantos vértices existem no maior componente do grafo
+
 <i><b> Requisitos pendentes:
 N/A
 </b></i>
