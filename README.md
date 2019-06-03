@@ -47,5 +47,5 @@ Obs.: A solução adotada deve contemplar a parametrização para grafos pondera
 - Desenvolver uma rotina para identificar quantos vértices existem no maior componente do grafo
 
 <i><b> Requisitos pendentes:
-N/A
+ITEM 5
 </b></i>
