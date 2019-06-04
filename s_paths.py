@@ -165,6 +165,16 @@ def floyd_warshall(G):
 
     return Dk
 
+
+def warshall(a):
+    assert (len(row) == len(a) for row in a)
+    n = len(a)
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                (a[i][j] == a[i][j]).all or (a[i][k] and a[k][j]).all
+    return a
+
 if __name__ == '__main__':
     #Grafo para realizar o teste
     G = nx.DiGraph()
@@ -180,4 +190,11 @@ if __name__ == '__main__':
     print(Res2)
 
     print( floyd_warshall(G))
+    
+    matriz = nx.to_numpy_matrix(G)
+    print(matriz)
+    print(warshall(matriz))
+
+
+    
 
