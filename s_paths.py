@@ -6,7 +6,7 @@ import numpy as np
 
 #--------------------------
 # MÉTODOS PARA ENCONTRAR
-#
+# OS MENORES CAMINHOS
 #--------------------------
 
 def dijkstra(G, inicial, final=None, weight='weight'):
@@ -28,13 +28,13 @@ def dijkstra(G, inicial, final=None, weight='weight'):
     margem = []
     for inicio in inicial:
         if inicio not in G:
-            raise nx.NodeNotFound("Inicio {} nao esta no G".format(source))
+            raise print("O vertice inicial não foi encontrado")
         visao[inicio] = 0
         push(margem, (0, next(c), inicio))
     while margem:
         (d, _, v) = pop(margem)
         if v in dist:
-            continue  # already searched this node.
+            continue  # Caso o no ja tenha sido buscado
         dist[v] = d
         if v == final:
             break
@@ -59,7 +59,7 @@ def dijkstra(G, inicial, final=None, weight='weight'):
     try:
         return (dist[final], caminhos[final])
     except KeyError:
-        raise nx.NetworkXNoPath("Nao ha caminho para {}.".format(final))
+        raise print("Nao ha caminho para esse vertice")
 
 def pesos(G, weight):
     if callable(weight):
@@ -82,7 +82,7 @@ def bellman_ford(G, inicial, final=None, weight='weight'):
     pred = None  #Nao vao ser utilizados dicionarios de listas
     for s in [inicial]:
         if s not in G:
-            raise nx.NodeNotFound("Objeto inicial {} nao esta em G".format(s))
+            raise print("O objeto não esta em G")
 
     if pred is None:
         pred = {v: [] for v in [inicial]}
@@ -140,8 +140,8 @@ def bellman_ford(G, inicial, final=None, weight='weight'):
     try:
         return (dist[final], caminhos[final])
     except KeyError:
-        msg = "Node %s not reachable from %s" % (final, inicial)
-        raise nx.NetworkXNoPath(msg)
+        msg = "Vertice %s não é alcalçável de  %s" % (final, inicial)
+        raise print("Não há caminho")
 
 def floyd_warshall(G):
     n = G.number_of_nodes()
